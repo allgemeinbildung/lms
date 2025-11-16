@@ -2,7 +2,9 @@
 /node_modules
 
 # Vite build output
-/dist
+# We are commenting this out because our deployment strategy for GitHub Pages
+# requires committing the build output folder (renamed to 'docs').
+# /dist
 
 # Log files
 npm-debug.log*
