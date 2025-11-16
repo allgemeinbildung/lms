@@ -1,13 +1,9 @@
 // FILE: js/app.js (REPLACE entire file)
 
+import 'quill/dist/quill.snow.css';
 import { printAnswers } from './printer.js';
-import { firebaseConfig } from './firebase-config.js';
-// We no longer need to import 'authenticate'
 import { renderPage, loadAndRenderAnswers, setupQuillListeners } from './renderer.js';
-
-// --- Initialize Firebase ---
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
+import { auth } from './firebaseClient.js';
 
 // --- DOM Elements ---
 const assignmentTitleEl = document.getElementById('assignment-title');
@@ -45,7 +41,7 @@ auth.onAuthStateChanged(async (user) => {
 
 async function initializeApp() {
     try {
-        const response = await fetch('assignment.json');
+        const response = await fetch('/assignment.json');
         if (!response.ok) throw new Error(`Failed to load assignment.json: ${response.statusText}`);
         const data = await response.json();
         state.assignmentData = data;

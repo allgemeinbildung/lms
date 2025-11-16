@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anmeldung - LMS Box</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
     <style>
         /* Styles specific to the login page */
         body {
@@ -89,12 +89,6 @@
         <p id="status-message"></p>
     </div>
 
-    <!-- Firebase SDKs are needed here too -->
-    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore-compat.js"></script>
-    
-    <!-- New script to handle login logic -->
-    <script src="js/login.js" type="module"></script>
+    <script type="module" src="/src/js/login.js"></script>
 </body>
 </html>

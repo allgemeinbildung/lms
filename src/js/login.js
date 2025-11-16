@@ -1,10 +1,5 @@
 // FILE: js/login.js (NEW FILE)
-import { firebaseConfig } from './firebase-config.js';
-
-// --- Initialize Firebase ---
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const db = firebase.firestore();
+import { auth, db } from './firebaseClient.js';
 
 // --- DOM Elements ---
 const loginView = document.getElementById('login-view');

@@ -1,4 +1,5 @@
-// FILE: js/renderer.js (REPLACE entire file)
+import Quill from 'quill';
+import { db } from './firebaseClient.js';
 
 // --- Debounce Utility ---
 function debounce(func, wait) {
@@ -13,8 +14,6 @@ function debounce(func, wait) {
 // --- Firestore Save Logic ---
 const debouncedSave = debounce(async (userUid, payload) => {
     try {
-        // Access the globally available 'firebase' object
-        const db = firebase.firestore();
         const submissionRef = db.collection('submissions').doc(userUid);
         
         await submissionRef.set(payload, { merge: true });
@@ -49,7 +48,6 @@ export function renderPage(pageObject, container) {
  * Loads data from Firestore and populates the Quill editors.
  */
 export async function loadAndRenderAnswers(userUid, pageObject) {
-    const db = firebase.firestore();
     const submissionRef = db.collection('submissions').doc(userUid);
     const doc = await submissionRef.get();
     const data = doc.exists ? doc.data() : {};

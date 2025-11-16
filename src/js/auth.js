@@ -1,5 +1,7 @@
 // FILE: js/auth.js (REPLACE entire file)
 
+import { auth } from './firebaseClient.js';
+
 /**
  * Authenticates the user anonymously using Firebase.
  * If a user is already signed in, it returns the existing user.
@@ -8,9 +10,6 @@
  */
 export async function authenticate() {
     try {
-        // Access the globally available 'firebase' object from the script tags
-        const auth = firebase.auth();
-
         // Check if a user is already signed in
         let user = auth.currentUser;
         if (user) {
