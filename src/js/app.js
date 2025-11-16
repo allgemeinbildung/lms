@@ -43,9 +43,11 @@ auth.onAuthStateChanged(async (user) => {
 // FILE: src/js/app.js
 
 // +++++ THIS IS THE CORRECTED initializeApp FUNCTION +++++
+// FILE: src/js/app.js
+
+// Make sure the initializeApp function looks exactly like this:
 async function initializeApp() {
     try {
-        // Define the ID of the assignment you want to load.
         const assignmentToLoadId = "komplexe-ausbildungsaufgabe-v2";
 
         // Use the "compat" syntax to fetch the document
