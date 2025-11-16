@@ -2,14 +2,10 @@
 :: =================================================================
 ::  WARNING: THIS SCRIPT OVERWRITES YOUR LIVE FIRESTORE DATA
 :: =================================================================
-:: It takes all .json files from the 'firestore-data' folder and
-:: uploads them to your live Firebase project.
-::
-:: Any collections on Firebase that have a matching folder name here
-:: will be completely replaced.
+:: It uses the Google Cloud CLI (gcloud) to upload your local
+:: 'firestore-data' folder to your live Firebase project.
 :: =================================================================
 
-:: --- CONFIGURE YOUR PROJECT ID HERE ---
 set PROJECT_ID=lms-interactive
 set DATA_DIR=firestore-data
 
@@ -18,19 +14,20 @@ echo TARGET PROJECT: %PROJECT_ID%
 echo SOURCE FOLDER: .\%DATA_DIR%
 echo.
 echo This will DELETE all data in the corresponding collections on your
-echo LIVE project and replace it with the local data.
+echo LIVE project and replace it with your local data.
 echo.
 
 pause
 echo.
-echo Starting sync...
+echo Starting upload...
 
-:: The main command to import all collections from the data directory
-firebase firestore:collections:import "%DATA_DIR%" --project=%PROJECT_ID%
+:: The main gcloud command to import data.
+:: It requires a temporary location in Google Cloud Storage to work.
+gcloud firestore import "gs://%PROJECT_ID%.appspot.com/temp-import-data/" --collection-ids="assignments" --project=%PROJECT_ID% --quiet
 
 echo.
 echo =================================================================
-echo  SYNC COMPLETE!
+echo  PUSH COMPLETE! Your live database now matches your local data.
 echo =================================================================
 echo.
 pause
