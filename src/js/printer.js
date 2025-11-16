@@ -1,5 +1,7 @@
 // FILE: js/printer.js (REPLACE entire file)
 
+import { db } from './firebaseClient.js';
+
 /**
  * Fetches the student's complete submission from Firestore.
  * @param {string} userUid The Firebase user's unique ID.
@@ -7,7 +9,6 @@
  */
 async function getSubmissionData(userUid) {
     try {
-        const db = firebase.firestore();
         const submissionRef = db.collection('submissions').doc(userUid);
         const doc = await submissionRef.get();
         return doc.exists ? doc.data() : {};

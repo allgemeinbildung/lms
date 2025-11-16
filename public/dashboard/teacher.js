@@ -1,5 +1,5 @@
 // FILE: dashboard/teacher.js (Final Corrected Version)
-import { firebaseConfig } from '../js/firebase-config.js';
+import { firebaseConfig } from './firebase-config.js';
 
 const CREATE_USER_URL = 'https://get-all-submissions-305371665876.europe-west6.run.app/createUserAccount';
 
