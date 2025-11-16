@@ -1,0 +1,27 @@
+# FILE: .github/deploy.yaml (COMPLETE CONTENT)
+name: Deploy Vite Project to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # Or master, depending on your default branch name
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # This is required to push to the gh-pages branch
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      - name: Install and Build 🔧
+        run: |
+          npm install
+          npm run build
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: dist # The folder the action should deploy.
