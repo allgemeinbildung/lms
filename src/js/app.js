@@ -40,20 +40,23 @@ auth.onAuthStateChanged(async (user) => {
 
 // --- App Functions (These are now called only AFTER a user is confirmed to be logged in) ---
 
+// FILE: src/js/app.js
+
+// +++++ THIS IS THE CORRECTED initializeApp FUNCTION +++++
 async function initializeApp() {
     try {
-        // --- NEW LOGIC: Fetch from Firestore ---
-        // ⬇️ UPDATE THIS LINE with our new, general ID
-        const assignmentId = "einfuehrungsaufgabe"; 
-        const assignmentRef = db.collection('assignments').doc(assignmentId);
+        // Define the ID of the assignment you want to load.
+        const assignmentToLoadId = "komplexe-ausbildungsaufgabe-v2";
+
+        // Use the "compat" syntax to fetch the document
+        const assignmentRef = db.collection('assignments').doc(assignmentToLoadId);
         const doc = await assignmentRef.get();
 
         if (!doc.exists) {
-            throw new Error(`Assignment "${assignmentId}" not found in Firestore.`);
+            throw new Error(`Assignment "${assignmentToLoadId}" not found in Firestore.`);
         }
+        
         const data = doc.data();
-        // --- END OF NEW LOGIC ---
-
         state.assignmentData = data;
 
         assignmentTitleEl.textContent = data.assignmentTitle;
