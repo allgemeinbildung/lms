@@ -1,7 +1,3 @@
-Of course. A high-quality README is essential for any project. Here is a detailed, professional README file that explains the project's purpose, architecture, setup, and the critical workings of the backend deployment.
-
----
-
 # LMS Box v2.1 - Flexible Stepper Application
 
 ## Project Overview
@@ -184,4 +180,5 @@ exports.createUserAccount = functions.http('createUserAccount', async (req, res)
 1.  **Initialization:** The `firebase-admin` library is initialized. When running on Google Cloud, it automatically finds the necessary credentials.
 2.  **Function Definition:** `functions.http('functionName', ...)` registers a block of code as an HTTP-triggered function.
 3.  **Export:** `exports.createUserAccount = ...` makes the function discoverable by the Functions Framework. The `--target=createUserAccount` in `package.json` tells the framework to find this specific export and expose it via the function's URL.
+
 4.  **Execution Flow:** When an HTTP request hits the function's URL, the framework directs it to this code. The code first handles CORS, then performs a critical security check using the incoming `idToken` to verify the caller is a teacher. Only if this check passes does it proceed to the core logic of creating a new user. This ensures that only authorized teachers can add students to the system.
