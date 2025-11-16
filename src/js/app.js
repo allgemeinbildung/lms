@@ -3,7 +3,8 @@
 import 'quill/dist/quill.snow.css';
 import { printAnswers } from './printer.js';
 import { renderPage, loadAndRenderAnswers, setupQuillListeners } from './renderer.js';
-import { auth } from './firebaseClient.js';
+// ⬇️ MAKE SURE THIS LINE IMPORTS 'db'
+import { auth, db } from './firebaseClient.js'; 
 
 // --- DOM Elements ---
 const assignmentTitleEl = document.getElementById('assignment-title');
@@ -41,9 +42,18 @@ auth.onAuthStateChanged(async (user) => {
 
 async function initializeApp() {
     try {
-        const response = await fetch('/assignment.json');
-        if (!response.ok) throw new Error(`Failed to load assignment.json: ${response.statusText}`);
-        const data = await response.json();
+        // --- NEW LOGIC: Fetch from Firestore ---
+        // ⬇️ UPDATE THIS LINE with our new, general ID
+        const assignmentId = "einfuehrungsaufgabe"; 
+        const assignmentRef = db.collection('assignments').doc(assignmentId);
+        const doc = await assignmentRef.get();
+
+        if (!doc.exists) {
+            throw new Error(`Assignment "${assignmentId}" not found in Firestore.`);
+        }
+        const data = doc.data();
+        // --- END OF NEW LOGIC ---
+
         state.assignmentData = data;
 
         assignmentTitleEl.textContent = data.assignmentTitle;

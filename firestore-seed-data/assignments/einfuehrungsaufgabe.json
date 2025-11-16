@@ -1,0 +1,42 @@
+{
+  "assignmentId": "einfuehrungsaufgabe",
+  "assignmentTitle": "Willkommen bei der LMS Box",
+  "pages": [
+    {
+      "id": "willkommen",
+      "title": "Herzlich Willkommen",
+      "elements": [
+        {
+          "type": "text",
+          "content": "<h2>Hallo und Willkommen!</h2><p>Dies ist Ihr erster Auftrag in unserem neuen Lernsystem. Auf den folgenden Seiten werden Sie durch einige einfache Aufgaben geführt. Ihre Antworten werden automatisch gespeichert, während Sie tippen.</p>"
+        },
+        {
+          "type": "quill",
+          "id": "q1_vorstellung",
+          "question": "Bitte stellen Sie sich in ein paar Sätzen vor."
+        }
+      ]
+    },
+    {
+      "id": "erwartungen",
+      "title": "Ihre Erwartungen",
+      "elements": [
+        {
+          "type": "quill",
+          "id": "q2_erwartungen",
+          "question": "Was erhoffen Sie sich von diesem Kurs oder dieser Aufgabe zu lernen?"
+        }
+      ]
+    },
+    {
+      "id": "abschluss",
+      "title": "Abschluss",
+      "elements": [
+        {
+          "type": "text",
+          "content": "<h3>Sehr gut!</h3><p>Sie haben die Einführungsaufgabe abgeschlossen. Sie können jederzeit zurückgehen und Ihre Antworten bearbeiten. Klicken Sie auf 'Antworten drucken', um eine Zusammenfassung Ihrer Arbeit zu erhalten.</p>"
+        }
+      ]
+    }
+  ]
+}
